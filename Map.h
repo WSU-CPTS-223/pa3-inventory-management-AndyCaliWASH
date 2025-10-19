@@ -3,10 +3,14 @@
 * Course: CPTS 223, Fall 2025
 * Assignment: PA3
 * Description: Header file for map template, includes class declaration and function definitions. 
-* Date: 10/16/2025
+* Date: 10/18/2025
 */ 
 
 #include <utility> // for std::pair
+#include <algorithm> // for std::max
+using namespace std; 
+
+//node definition
 template<class T, class S>
 struct Node {
 	int height; 
@@ -40,10 +44,10 @@ public:
 
 		//class attributes
 		Node<T, S>* node_;
-		const MyMap<T, S>* map_;
+		const Map<T, S>* map_;
 
 		//constructor
-		Iterator(Node<T,S>* node = nullptr, const MyMap<T,S>* map = nullptr) : 
+		Iterator(Node<T,S>* node = nullptr, const Map<T,S>* map = nullptr) : 
 			node_(node), map_(map) {}
 		
 		//overloaded operators
@@ -321,7 +325,7 @@ private:
 			return node;
 		}
 
-		node->height = max(Height(node->left), Height(node->right)) + 1; 
+		node->height = std::max(Height(node->left), Height(node->right)) + 1; 
 
 		int balance_factor = BalanceFactor(node);
 

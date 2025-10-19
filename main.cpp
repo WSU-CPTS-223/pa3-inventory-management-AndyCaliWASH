@@ -1,7 +1,12 @@
-#include <iostream>
-#include <string>
-#include "Inventory.h"
+/*
+* Name: Andres Valencia Cardenas
+* Course: Cpts 223, Fall 2025
+* Assignment: PA3
+* Description: main file for inventory management system, includes REPL implementation.
+* Date: 10/18/2025
+*/
 
+#include "Inventory.h"
 using namespace std;
 
 void printHelp()

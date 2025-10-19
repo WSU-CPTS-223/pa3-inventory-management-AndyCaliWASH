@@ -15,9 +15,24 @@ class Product
 {
     public: 
         //constructors 
-        Product(const string& name = "", const string& uniqueId = ""); // default constructor 
+        Product() 
+        {
+            name_ = ""; 
+            uniqueId_ = ""; 
+        }
         Product(const string& name, const string& uniqueId) : name_(name), uniqueId_(uniqueId) {} 
-        ~Product(); 
+        ~Product() {}
+
+        //getters 
+        const string& GetName() const 
+        { 
+            return name_; 
+        }
+        const string& GetUniqueId() const { return uniqueId_; }
+
+        //setters
+        void SetName(const string& name) { name_ = name; }
+        void SetUniqueId(const string& uniqueId) { uniqueId_ = uniqueId; }
 
     private: 
     

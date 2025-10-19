@@ -5,27 +5,73 @@
 * Description: Header file for inventory class, includes class declaration.
 * Date: 10/18/2025
 */ 
-
-#include "Map.h"
-#include "Array.h"
-#include "Product.h"
-#include <fstream> 
-#include <sstream>
+#include "Map.h" //for Map class
+#include "Array.h" // for Array class
+#include "Product.h" // for Product class
+#include <fstream> // for file operations 
+#include <sstream> // for stringstream
 
 //Inventory class declaration
 class Inventory
 {
     public: 
         //constructors
-        Inventory(); 
-        ~Inventory() = default;
+        Inventory();
+        ~Inventory(); 
 
         //Class methods
+
+        /*
+        * @param: none
+        * returns: none
+        * parses the input file
+        */
         void Parse(); 
+
+        /*
+        * @param: a string for searching the inventory
+        * returns: none
+        * finds the given string in the inventory
+        */
         void Find(const string& inventoryId);
+
+        /*
+        * @param: a string, which is the category being searched for
+        * returns: none
+        * searches for the given category and prints every item that falls under that category
+        */
         void ListInventory(const string& category);
+
+        /*
+        * @param: none
+        * returns: none
+        * prints the information of every item in the inventory
+        */
+        void Print(); 
+
+        /*
+        * @param: a string 
+        * returns: none
+        * trims the space characters from the left side of the string
+        */
+        void ltrim(string& s);
+
+        /*
+        * @param: a string
+        * returns: none
+        * trims the space characters from the right side of the string
+        */
+        void rtrim(string& s);
+
+        /*
+        * @param: a string
+        * returns: none
+        * trims the space characters from both sides of a string
+        */
+        void trim(string& s);
     
     private: 
         //class attributes
-        Map<Array<string>, Product> items_;
+        Map <Vector<string>, Product> items_;
+
 }; 

@@ -8,20 +8,33 @@
 
 #include "Inventory.h"
 
+Inventory::Inventory()
+{
+
+}
+
+Inventory::~Inventory()
+{
+
+} 
+
 void Inventory::Parse()
 {
     ifstream file; 
     string line; 
-    Array<string> categories; 
-    file.open("inventory.csv");
+    //open file
+    file.open("Inventory.csv");
     if (!file.is_open())
     {
         cerr << "Error opening file" << endl;
         return; 
     }
     getline(file, line); // skip header line
+    
+    //parse file
     while(getline(file, line))
     {
+        Vector<string> categories; 
         stringstream ss(line); 
         string name, category, uniqueId, buffer, cat; 
         
@@ -36,28 +49,31 @@ void Inventory::Parse()
         }
 
         stringstream sa(category);  
-        while(getline(sa, cat, '|')) 
+        while (getline(sa, cat, '|'))
         {
+            trim(cat); 
             categories.PushBack(cat);
-        }
-
+        } 
+        
+        trim(uniqueId); 
+        trim(name); 
         Product product(name, uniqueId); 
         items_.Insert(categories, product); 
     }
-    file.close(); 
 
+    file.close(); 
 }
 
 void Inventory::Find(const string& inventoryId)
 {
-    for (auto it = items_.begin(); !(it == items_.end()); ++it)
+    for (auto it : items_)
     {
-        const auto& entry = *it;
-        if (entry.second.uniqueId_ == inventoryId)
+        const auto& entry = it;
+        if (entry.second.GetUniqueId() == inventoryId)
         {
             cout << "Product Found: " << endl; 
-            cout << "Name: " << entry.second.name_ << endl; 
-            cout << "Unique ID: " << entry.second.uniqueId_ << endl;
+            cout << "Name: " << entry.second.GetName() << endl; 
+            cout << "Unique ID: " << entry.second.GetUniqueId() << endl;
             cout << "Categories: " << endl; 
             for (const auto& category : entry.first) 
             {
@@ -69,7 +85,52 @@ void Inventory::Find(const string& inventoryId)
     cout << "Product Not Found" << endl;
 }
 
+void Inventory::Print()
+{
+    for (const auto& it : items_)
+    {
+        cout << it.second.GetName() << " " << it.second.GetUniqueId() << endl; 
+                    cout << "Categories: " << endl; 
+            for (const auto& category : it.first) 
+            {
+                cout << "> " << category << endl;  
+            }
+    }
+}
+
 void Inventory::ListInventory(const string& category)
 {
+    bool found = false; 
+    for (auto it : items_)
+    {
+        for (const auto& cat : it.first)
+        {
+            if (cat == category)
+            {
+                cout << "Product ID: " << it.second.GetUniqueId() << ", Name: " << it.second.GetName() << endl; 
+                found = true; 
+            }
+        }
+    }
+    if (!found)
+    {
+        cout << "Invalid Category" << endl;
+    }
+}
 
+void Inventory::ltrim(std::string& s) {
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+        return !std::isspace(ch);
+    }));
+}
+
+void Inventory::rtrim(std::string& s) {
+    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
+        return !std::isspace(ch);
+    }).base(), s.end());
+}
+
+void Inventory::trim(std::string& s) {
+    ltrim(s);
+    rtrim(s);
 }

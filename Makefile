@@ -1,10 +1,15 @@
-out: clean compile execute
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall -g
 
-compile: main.cpp
-	g++ -g -Wall -std=c++14 main.cpp -o mainexe
+TARGET = main
 
-execute: mainexe
-	./mainexe
+SOURCE = $(wildcard *.cpp)
 
-clean:
-	rm -f mainexe
+$(TARGET): $(SOURCE) 
+	$(CXX) $(CXXFLAGS) $(SOURCE) -o $(TARGET)
+
+clean: 
+	rm -f $(TARGET) 
+
+
+
