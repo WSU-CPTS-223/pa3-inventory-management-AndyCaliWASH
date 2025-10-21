@@ -1,9 +1,11 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/pAwGQi_N)
+//test cases
+1. I chose to test the insert function of the map class because this is how the products are logged into the inventory. I first tested the insert method on an empty map and then I did a couple of tests on a non-empty map.
+2. I chose to test the erase function of the map class to see if I could correctly remove items from the map. The test function first test the erase function on an empty map and then on a populated map.
+3. I chose to test the size function of the map because I wanted to know if items were correctly being added to the map and if the size was being updated correctly. The test function first tests the function on an empty map and then on a populated map.
+4. I chose to test the find function of map because it will be used in the program to find items. The test function first tests the find function on an empty map and then on a populated one.
+5. I chose to test the push back method of the vector class because that is how categories are added to each item in the program. The test function tests the function on an empty vector and then a populated one.
+6. I chose to test the popback function of the vector because I wanted to know if items could be removed from the array correctly. The function first tests popback on an empty array and then a populated one.
+7. I chose to test the clear function of the array becasue I wanted to see if all the elements could be removed properly from the array. The function is first tested with an empty array and then a populated one.
+8. I chose to test the size function of the array because I wanted to know if the elements were being added correctly and if the size was being updated correctly. The function is first tested on an empty array and then a populated one.
 
-# PA4 Skeleton Code
-We expect a fully functioninig command line REPL application for an inventory querying system. Feel free to modify the skeleton code as you see fit.
-
-### How to run the current skeleton code
-`make` will compile and execute the skeleton code
-
-Feel free to modify Makefile as you see fit.
+//NA category
