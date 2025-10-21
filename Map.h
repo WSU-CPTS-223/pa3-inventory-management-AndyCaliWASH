@@ -5,7 +5,7 @@
 * Description: Header file for map template, includes class declaration and function definitions. 
 * Date: 10/18/2025
 */ 
-
+#pragma once
 #include <utility> // for std::pair
 #include <algorithm> // for std::max
 using namespace std; 

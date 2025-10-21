@@ -5,6 +5,7 @@
 * Description: Array template class, includes the function declaration and function definitions.
 * Date: 10/17/2025
 */
+#pragma once
 #include <iostream> // for cin and cout
 #include <stdexcept> //for exceptions
 

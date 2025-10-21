@@ -5,8 +5,9 @@
 * Description: Header file for inventory class, includes class declaration.
 * Date: 10/18/2025
 */ 
+#pragma once
 #include "Map.h" //for Map class
-#include "Array.h" // for Array class
+#include "Vector.h" // for Array class
 #include "Product.h" // for Product class
 #include <fstream> // for file operations 
 #include <sstream> // for stringstream
