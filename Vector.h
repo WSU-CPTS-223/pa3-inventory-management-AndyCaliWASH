@@ -152,8 +152,13 @@ public:
     void PopBack() 
     {
         if (length_ == 0)
-            throw std::out_of_range("Vector is empty");
-        --length_;
+        {
+            std::cout << "Index out of range " << std::endl;
+        }
+        else 
+        { 
+            --length_;
+        }
     }
     
     /*

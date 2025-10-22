@@ -7,6 +7,7 @@
 */
 
 #include "Inventory.h"
+#include "test.h"
 using namespace std;
 
 void printHelp()
@@ -55,6 +56,7 @@ void bootStrap(Inventory& inventory)
 
 int main(int argc, char const *argv[])
 {
+    //test_all(); 
     string line;
     Inventory inventory;
     bootStrap(inventory);
@@ -70,5 +72,7 @@ int main(int argc, char const *argv[])
         }
         cout << "> ";
     }
+    
     return 0;
+
 }

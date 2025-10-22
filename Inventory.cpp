@@ -10,7 +10,7 @@
 
 Inventory::Inventory()
 {
-
+    
 }
 
 Inventory::~Inventory()
@@ -34,31 +34,32 @@ void Inventory::Parse()
     //parse file
     while(getline(file, line))
     {
-        Vector<string> categories; 
         stringstream ss(line); 
-        string name, category, uniqueId, buffer, cat; 
-        
-        getline(ss, uniqueId, ',');
+        Vector<string> categories; 
+        string Id, name, category, cat, buffer;
+        getline(ss, Id, ','); 
         getline(ss, name, ','); 
-        getline(ss, buffer, ','); 
-        getline(ss, buffer, ','); 
+        getline(ss, buffer, ',');
+        getline(ss, buffer, ',');
         getline(ss, category, ','); 
+     
         if (category == "")
         {
             categories.PushBack("NA"); 
         }
-
-        stringstream sa(category);  
-        while (getline(sa, cat, '|'))
+        else 
         {
-            trim(cat); 
-            categories.PushBack(cat);
-        } 
-        
-        trim(uniqueId); 
-        trim(name); 
-        Product product(name, uniqueId); 
-        items_.Insert(categories, product); 
+            stringstream sa(category); 
+            while(getline(sa, cat, '|'))
+            {
+                trim(cat); 
+                categories.PushBack(cat); 
+            }
+        }
+        trim(Id); 
+        Product product(name); 
+        product.setCategories(categories); 
+        items_.Insert(Id, product); 
     }
 
     file.close(); 
@@ -66,35 +67,22 @@ void Inventory::Parse()
 
 void Inventory::Find(const string& inventoryId)
 {
-    for (auto it : items_)
+    auto it = items_.Find(inventoryId);
+    const auto& entry = *it; 
+    if (it != items_.end())
     {
-        const auto& entry = it;
-        if (entry.second.GetUniqueId() == inventoryId)
+        cout << "Product Found: " << endl; 
+        cout << "Unique ID: " << entry.first<< endl;
+        cout << "Name: " << entry.second.GetName() << endl; 
+        cout << "Categories: " << endl; 
+        for (const auto& category : entry.second.GetCategories()) 
         {
-            cout << "Product Found: " << endl; 
-            cout << "Name: " << entry.second.GetName() << endl; 
-            cout << "Unique ID: " << entry.second.GetUniqueId() << endl;
-            cout << "Categories: " << endl; 
-            for (const auto& category : entry.first) 
-            {
-                cout << "> " << category << endl;  
-            }
-            return; 
+            cout << "> " << category << endl;  
         }
     }
-    cout << "Product Not Found" << endl;
-}
-
-void Inventory::Print()
-{
-    for (const auto& it : items_)
+    else 
     {
-        cout << it.second.GetName() << " " << it.second.GetUniqueId() << endl; 
-                    cout << "Categories: " << endl; 
-            for (const auto& category : it.first) 
-            {
-                cout << "> " << category << endl;  
-            }
+        cout << "Product not found." << endl; 
     }
 }
 
@@ -103,11 +91,11 @@ void Inventory::ListInventory(const string& category)
     bool found = false; 
     for (auto it : items_)
     {
-        for (const auto& cat : it.first)
+        for (const auto& cat : it.second.GetCategories())
         {
             if (cat == category)
             {
-                cout << "Product ID: " << it.second.GetUniqueId() << ", Name: " << it.second.GetName() << endl; 
+                cout << "Product ID: " << it.first << ", Name: " << it.second.GetName() << endl; 
                 found = true; 
             }
         }
@@ -118,19 +106,22 @@ void Inventory::ListInventory(const string& category)
     }
 }
 
-void Inventory::ltrim(std::string& s) {
+void Inventory::ltrim(string& s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
-        return !std::isspace(ch);
+        return !isspace(ch);
     }));
 }
 
-void Inventory::rtrim(std::string& s) {
+void Inventory::rtrim(string& s) {
     s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
-        return !std::isspace(ch);
+        return !isspace(ch);
     }).base(), s.end());
 }
 
-void Inventory::trim(std::string& s) {
+void Inventory::trim(string& s) {
     ltrim(s);
     rtrim(s);
 }
+
+
+

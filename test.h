@@ -66,3 +66,10 @@ void test_Clear_vector();
 */
 void test_Size_vector(); 
 
+/*
+* @param: none
+* returns: none 
+* runs all test functions
+*/
+void test_all(); 
+

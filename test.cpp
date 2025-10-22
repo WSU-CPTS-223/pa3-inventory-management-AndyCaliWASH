@@ -4,7 +4,7 @@ void test_insert_map()
 {
     cout << "Testing the Map Insert() function...." << endl; 
 
-    Map<string, int> map; 
+    MyMap<string, int> map; 
     map.Insert("Hello", 1); 
     assert(map.Size() == 1); 
     map.Insert("World", 2); 
@@ -13,7 +13,11 @@ void test_insert_map()
     map.Insert("four", 4); 
     map.Insert("five", 5); 
     assert(map.Size() == 5); 
-
+    for(int i = 0; i < 10000; i++)
+    {
+        map.Insert("one", 1); 
+    }
+    assert(map.Size() == 10005);
     cout << "All tests passed!" << endl; 
 }
 
@@ -21,9 +25,9 @@ void test_erase_map()
 {
     cout << "Testing the Map Erase() function......" << endl; 
     
-    Map<int, int> map; 
-    map.Erase(1); 
-    assert(map.Size() == 0); 
+    MyMap<int, int> map; 
+    map.Erase(1);
+    assert(map.Empty() == true); 
     map.Insert(1,3); 
     map.Insert(2,4);
     map.Insert(3,7); 
@@ -38,7 +42,7 @@ void test_size_map()
 {
     cout << "Testing the map Size() function...." << endl; 
     
-    Map<int, int> map; 
+    MyMap<int, int> map; 
     assert(map.Size() == 0); 
     map.Insert(1,3); 
     map.Insert(2,4);
@@ -53,7 +57,7 @@ void test_find_map()
 {
     cout << "Testing the map Find() function....." << endl; 
     
-    Map<int, int> map; 
+    MyMap<int, int> map; 
     assert(map.Find(1) == map.end()); 
     map.Insert(1,1); 
     map.Insert(2,2); 
@@ -87,7 +91,7 @@ void test_PopBack_vector()
 
     Vector<int> a; 
     a.PopBack();
-    assert(a.Size() == 0);
+    assert(a.Empty() == true);
     a.PushBack(1); 
     a.PushBack(2); 
     a.PushBack(3); 
@@ -127,3 +131,30 @@ void test_Size_vector()
 
     cout << "All tests passed!!" << endl; 
 }
+
+void test_all()
+{
+    cout << "=================================" << endl; 
+    cout << "Performing all tests............." << endl; 
+    cout << "=================================" << endl; 
+
+    test_erase_map(); 
+    test_size_map(); 
+    test_insert_map(); 
+    test_find_map(); 
+    test_Clear_vector(); 
+    test_PopBack_vector(); 
+    test_PushBack_vector(); 
+    test_Size_vector(); 
+
+    cout << "=================================" << endl; 
+    cout << "All tests passed!!!!!!!!!!!!!!!!!" <<endl; 
+    cout << "=================================" << endl;
+
+}
+
+//int main()
+//{
+    //test_all(); 
+    //return 0; 
+//}

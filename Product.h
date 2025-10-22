@@ -6,6 +6,7 @@
 * Date: 10/16/2025
 */
 #pragma once
+#include "Vector.h" // for Vector
 #include <iostream> // for cout and cin 
 #include <string> // for string and string functions
 using namespace std; 
@@ -18,9 +19,8 @@ class Product
         Product() 
         {
             name_ = ""; 
-            uniqueId_ = ""; 
         }
-        Product(const string& name, const string& uniqueId) : name_(name), uniqueId_(uniqueId) {} 
+        Product(const string& name) : name_(name) {} 
         ~Product() {}
 
         //getters 
@@ -28,16 +28,19 @@ class Product
         { 
             return name_; 
         }
-        const string& GetUniqueId() const { return uniqueId_; }
+        const Vector<string>& GetCategories() const
+        {
+            return categories_; 
+        }
 
         //setters
         void SetName(const string& name) { name_ = name; }
-        void SetUniqueId(const string& uniqueId) { uniqueId_ = uniqueId; }
+        void setCategories(const Vector<string>& categories) { categories_ = categories; }
 
     private: 
     
         //class attributes
         string name_; 
-        string uniqueId_; 
+        Vector<string> categories_; 
 };
 

@@ -6,11 +6,13 @@
 * Date: 10/18/2025
 */ 
 #pragma once
+#include <iostream> // for cout and cin
+#include <string> // for string and string operations 
 #include <utility> // for std::pair
-#include <algorithm> // for std::max
 using namespace std; 
 
-//node definition
+
+//Node for AVL tree
 template<class T, class S>
 struct Node {
 	int height; 
@@ -25,14 +27,14 @@ struct Node {
 
 //MyMap class definition
 template <class T, class S>
-class Map
+class MyMap
 {
 public:
 
 	//constructors
-	Map() : head_(nullptr), count_(0) {}
+	MyMap() : head_(nullptr), count_(0) {}
 
-	~Map()
+	~MyMap()
 	{
 		Clear(head_);
 	}
@@ -44,10 +46,10 @@ public:
 
 		//class attributes
 		Node<T, S>* node_;
-		const Map<T, S>* map_;
+		const MyMap<T, S>* map_;
 
 		//constructor
-		Iterator(Node<T,S>* node = nullptr, const Map<T,S>* map = nullptr) : 
+		Iterator(Node<T,S>* node = nullptr, const MyMap<T,S>* map = nullptr) : 
 			node_(node), map_(map) {}
 		
 		//overloaded operators
@@ -119,7 +121,7 @@ public:
 	void Erase(const T& key)
 	{
 		head_ = Erase(key, head_);
-		count_--;
+		if (head_ != nullptr) count_--;
 	}
 
 	/*
@@ -325,7 +327,7 @@ private:
 			return node;
 		}
 
-		node->height = std::max(Height(node->left), Height(node->right)) + 1; 
+		node->height = max(Height(node->left), Height(node->right)) + 1; 
 
 		int balance_factor = BalanceFactor(node);
 
@@ -521,4 +523,3 @@ private:
 	Node<T, S>* head_; 
 	int count_; 
 };
-

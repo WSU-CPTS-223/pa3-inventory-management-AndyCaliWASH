@@ -7,10 +7,10 @@
 */ 
 #pragma once
 #include "Map.h" //for Map class
-#include "Vector.h" // for Array class
 #include "Product.h" // for Product class
 #include <fstream> // for file operations 
 #include <sstream> // for stringstream
+#include <algorithm> // for findif()
 
 //Inventory class declaration
 class Inventory
@@ -42,14 +42,7 @@ class Inventory
         * searches for the given category and prints every item that falls under that category
         */
         void ListInventory(const string& category);
-
-        /*
-        * @param: none
-        * returns: none
-        * prints the information of every item in the inventory
-        */
-        void Print(); 
-
+        
         /*
         * @param: a string 
         * returns: none
@@ -73,6 +66,6 @@ class Inventory
     
     private: 
         //class attributes
-        Map <Vector<string>, Product> items_;
+        MyMap <string, Product> items_;
 
 }; 
