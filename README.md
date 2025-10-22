@@ -9,3 +9,4 @@
 8. I chose to test the size function of the array because I wanted to know if the elements were being added correctly and if the size was being updated correctly. The function is first tested on an empty array and then a populated one.
 
 //NA category
+If the category section was empty, I pushed the string "NA" on to the vector of categories. Therefore the only category for the item would be NA. 
