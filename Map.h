@@ -144,6 +144,7 @@ public:
 		return head_ == nullptr;
 	}
 
+
 	/*
 	* @param: none
 	* returns: Iterator object
@@ -175,6 +176,7 @@ public:
 		Node<T, S>* current = head_; 
 		while (current != nullptr)
 		{
+
 			if (key == current->key)
 			{
 				return Iterator(current, this);
